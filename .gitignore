@@ -1,0 +1,10 @@
+__pycache__
+Pipfile*
+*.egg*
+*.sh
+*.txt
+build
+dist
+*.txt
+db
+

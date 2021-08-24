@@ -48,3 +48,5 @@ Endpoints tested:
 
 All endpoints tested both with valid and with invalid arguments.
 Run app locally and tested with Postman.
+Docker image tested locally on Docker Desktop.
+Docker image deployed on AWS ECS Fargate and tested.

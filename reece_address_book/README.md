@@ -5,6 +5,11 @@ An API to manage address books.
 Installation
 ------------
 
+Pull the latest image from DockerHub (v1.1):
+
+    docker pull paolobenini/reece-address-book-api:v1.1
+
+Deploy on AWS ECS or Kubernetes platform.
 
 
 API endpoints
@@ -119,8 +124,15 @@ Usage
 ```
 
 ```plain
-    # List all contacts
+    # List all unique contacts across all address books
     /contacts
+    http method: GET
+    http header "x-access-tokens": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoicGFvbG9AZmFrZWRvbWFpbi5jb20ifQ.jsKRH8-LWMnxSF4Y-PBNPIsbSj_BO-hZV9RZZJas7Th"
+```
+
+```plain
+    # List all contacts regardless (including contacts which haven't been added to any address book yet)
+    /contacts?globally=true
     http method: GET
     http header "x-access-tokens": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoicGFvbG9AZmFrZWRvbWFpbi5jb20ifQ.jsKRH8-LWMnxSF4Y-PBNPIsbSj_BO-hZV9RZZJas7Th"
 ```

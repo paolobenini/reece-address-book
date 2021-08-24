@@ -1,5 +1,8 @@
 FROM python:3.8
 
+ENV SQLITE_DB=address_book.db
+ENV SECRET_KEY=cblau4rh848hq0vkas4q34isa044i2hs
+
 WORKDIR /reece-address-book-api
 
 COPY requirements.txt .

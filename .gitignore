@@ -7,4 +7,5 @@ build
 dist
 *.txt
 db
+Dockerfile
 !requirements.txt

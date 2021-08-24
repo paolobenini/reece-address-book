@@ -7,5 +7,5 @@ build
 dist
 *.txt
 db
-Dockerfile
+Dockerfile.sec
 !requirements.txt

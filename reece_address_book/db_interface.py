@@ -130,9 +130,6 @@ class DbInterface:
     if userId > 0:
       contacts = Contact.query.join(ContactAddressBook, Contact.id == ContactAddressBook.contactId). \
                 filter(Contact.userId == userId).all()
-      # debug
-      #      
-      print(contacts)
       if contacts:
         for contact in contacts:
           contactData = {}

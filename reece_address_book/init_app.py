@@ -17,7 +17,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(dbBasedir, s
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Software info
-softwareVersion = "1.0.1"
+softwareVersion = "1.0.2"
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)

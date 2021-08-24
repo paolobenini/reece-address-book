@@ -5,9 +5,9 @@ An API to manage address books.
 Installation
 ------------
 
-Pull the latest image from DockerHub (v1.1):
+Pull the latest image from DockerHub (v1.2):
 
-    docker pull paolobenini/reece-address-book-api:v1.1
+    docker pull paolobenini/reece-address-book-api:v1.2
 
 Deploy on AWS ECS or Kubernetes platform.
 

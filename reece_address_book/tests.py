@@ -147,7 +147,7 @@ dbInterface = DbInterface(db)
 
 # createAddressBook
 #
-# (retcode, message) = dbInterface.createAddressBook(1, "Clients")
+# (retcode, message) = dbInterface.createAddressBook(1, "Friends")
 # if message:
 #   print(f"retcode ok = {retcode}, message = {message}")
 # else:
@@ -171,7 +171,7 @@ dbInterface = DbInterface(db)
 
 # addContactToAddressBook
 #
-# (retcode, message) = dbInterface.addContactToAddressBook(1, 1, 3)
+# (retcode, message) = dbInterface.addContactToAddressBook(currentUserId=1, addressBookId=2, contactId=1)
 # if message:
 #   print(f"retcode ok = {retcode}, message = {message}")
 # else:
@@ -185,4 +185,11 @@ dbInterface = DbInterface(db)
 # else:
 #   print(f"retcode ok = {retcode}")
 
-
+# getContactsInAllAddressBooks
+#
+# (data, retcode, message) = dbInterface.getContactsInAllAddressBooks(1)
+# if message:
+#   print(f"retcode ok = {retcode}, message = {message}")
+# else:
+#   print(f"retcode ok = {retcode}")
+# print(json.dumps(data, indent=2))

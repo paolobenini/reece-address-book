@@ -25,7 +25,7 @@ Returns the auth token.
 
 /contacts
 - All methods require the authentication token in http request's header "x-access-tokens".
-- GET: returns a JSON object with all contacts for the current user. With optional parameter "contact_id", it returns a JSON object containing the requested contact.
+- GET: returns a JSON object with all unique contacts across all address books for the current user. With optional parameter "contact_id", it returns a JSON object containing the requested contact. With optional parameter "globally=true" returns all contacts for the current user regardless.
 - POST: adds a new contact; body = JSON object with "name", "surname", "phone".
 - PUT: updates contact with id "contact_id"; body = JSON object containing at least one of the following:
 "name", "surname", "phone".

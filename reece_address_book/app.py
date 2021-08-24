@@ -94,6 +94,13 @@ def contacts(current_user):
   else:
     contact_id = 0
 
+  globally = request.args.get("globally")
+
+  if globally != None:
+    globally = globally.lower() == "true"
+  else:
+    globally = False
+
   if current_user != None:
     if request.method == "GET":
       if contact_id > 0:
@@ -101,8 +108,14 @@ def contacts(current_user):
         if retcodeOk:
           return jsonify(data)
         return make_response(jsonify({"message" : message}), 404)
-      # Get all contacts
-      (data, retcodeOk, message) = DbInterface.getContacts(current_user.id)
+      if globally:
+        # Get all contacts for this user regardless
+        (data, retcodeOk, message) = DbInterface.getContacts(current_user.id)
+        if retcodeOk:
+          return jsonify(data)
+        return make_response(jsonify({"message" : message}), 404)
+      # Get all unique contacts across all address books
+      (data, retcodeOk, message) = DbInterface.getContactsInAllAddressBooks(current_user.id)
       if retcodeOk:
         return jsonify(data)
       return make_response(jsonify({"message" : message}), 404)
@@ -265,7 +278,7 @@ def address_book_contacts(current_user):
     error = "Error: user not authorized"
     return make_response(jsonify({"message" : error}), 401)
 
-
-if __name__ == "__main__":
-  app.run(debug=True)
-#serve(app, host='0.0.0.0', port=8080)
+# if __name__ == "__main__":
+#   app.run(debug=True)
+def create_app():
+    return app

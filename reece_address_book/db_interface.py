@@ -84,7 +84,7 @@ class DbInterface:
   @staticmethod
   def getContacts(userId: int):
     """ 
-    Get all contacts for any given user. 
+    Get all contacts for any given user regardless of their belonging to any address book.
     
     Parameters: 
       userId
@@ -97,6 +97,42 @@ class DbInterface:
     output = []
     if userId > 0:
       contacts = Contact.query.filter(Contact.userId == userId).all()
+      if contacts:
+        for contact in contacts:
+          contactData = {}
+          contactData["id"] = contact.id
+          contactData["name"] = contact.name
+          contactData["surname"] = contact.surname
+          contactData["phone"] = contact.phoneNumber
+          output.append(contactData)
+      else:
+        retcodeOk = False
+        message = "Error: no records found."
+    else:
+      retcodeOk = False
+      message = "Error: userId must be a positive integer."
+    return (output, retcodeOk, message)
+
+  @staticmethod
+  def getContactsInAllAddressBooks(userId: int):
+    """ 
+    Get all contacts for any given user in all address books.
+    
+    Parameters: 
+      userId
+        
+    Returns: 
+      (output, retcodeOk, message)
+    """
+    retcodeOk = True
+    message = ""
+    output = []
+    if userId > 0:
+      contacts = Contact.query.join(ContactAddressBook, Contact.id == ContactAddressBook.contactId). \
+                filter(Contact.userId == userId).all()
+      # debug
+      #      
+      print(contacts)
       if contacts:
         for contact in contacts:
           contactData = {}
@@ -614,7 +650,8 @@ class DbInterface:
       if contact != None and \
         addressBook != None and \
         contact.userId == currentUserId:
-        contactInAddressBook = ContactAddressBook.query.filter_by(contactId = contact.id).first()
+        contactInAddressBook = ContactAddressBook.query.filter(and_(contactId == ContactAddressBook.contactId, \
+                              addressBookId == ContactAddressBook.addressBookId)).first()
         if not contactInAddressBook:
           record = ContactAddressBook(addressBookId=addressBookId, contactId=contactId)
           try:

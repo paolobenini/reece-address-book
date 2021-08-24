@@ -12,15 +12,16 @@ sqliteDb = os.environ.get("SQLITE_DB")
 app.config["SECRET_KEY"] = secretKey
 
 # Configure DB
-dbBasedir = os.path.abspath(os.path.dirname(__file__)) + "\\db\\"
+dbBasedir = os.path.abspath(os.path.dirname(__file__))
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(dbBasedir, sqliteDb)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Software info
-softwareVersion = "1.0.0"
+softwareVersion = "1.0.1"
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
 
+import models
 # Create all tables
 db.create_all()

@@ -32,6 +32,9 @@ class Auth:
       if user != None:
         if self.__bcrypt.check_password_hash(user.password, request_data["password"]):
           token = jwt.encode({"userId": user.id, "email": user.email}, self.__secretKey)
+        else:
+          retcodeOk = False
+          message = message = "Error: invalid email or password."
       else:
         retcodeOk = False
         message = "Error: no user with that email."

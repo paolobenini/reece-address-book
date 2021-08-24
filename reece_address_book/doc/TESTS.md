@@ -13,6 +13,7 @@ Methods:
 - DbInterface.getUsers: tested OK
 - DbInterface.getUserByEmail (currently non used): tested OK with valid and invalid parameters
 - DbInterface.getContacts: tested OK
+- DbInterface.getContactsInAllAddressBooks: tested OK
 - DbInterface.getContactsByFullName (currently non used): tested OK with valid and invalid parameters
 - DbInterface.getContactsByFirstName (currently non used): tested OK with valid and invalid parameters
 - DbInterface.getContactsBySurname (currently non used): tested OK with valid and invalid parameters
